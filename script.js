@@ -16,7 +16,17 @@ const independentProblems = [
     { question: 'Remote interior: x and 3x. Exterior: 120°. Find x.', answer: 30 },
     { question: 'Exterior: 100°, one remote interior: 38°. Find other.', answer: 62 },
     { question: 'Remote interior angles: 72° and 58°. Find exterior angle.', answer: 130 },
-    { question: 'Remote interior: x and (x+30). Exterior: 110°. Find x.', answer: 40 }
+    { question: 'Remote interior: x and (x+30). Exterior: 110°. Find x.', answer: 40 },
+    { question: 'Remote interior angles: 35° and 85°. Find exterior angle.', answer: 120 },
+    { question: 'Exterior: 125°, one remote interior: 70°. Find other.', answer: 55 },
+    { question: 'Remote interior: x and 4x. Exterior: 100°. Find x.', answer: 20 },
+    { question: 'Remote interior angles: 48° and 62°. Find exterior angle.', answer: 110 },
+    { question: 'Exterior: 150°, one remote interior: 90°. Find other.', answer: 60 },
+    { question: 'Remote interior: x and (x+10). Exterior: 90°. Find x.', answer: 40 },
+    { question: 'Remote interior angles: 67° and 53°. Find exterior angle.', answer: 120 },
+    { question: 'Exterior: 108°, one remote interior: 43°. Find other.', answer: 65 },
+    { question: 'Remote interior: 2x and 3x. Exterior: 125°. Find x.', answer: 25 },
+    { question: 'Remote interior: x and (x+40). Exterior: 120°. Find x.', answer: 40 }
 ];
 
 let studentAnswers = {};
@@ -236,12 +246,12 @@ function checkIndependent(problem) {
     independentAnswered++;
     document.getElementById('independentScore').textContent = independentScore;
 
-    if (independentAnswered >= 10) {
+    if (independentAnswered >= 20) {
         document.getElementById('finalScore').style.display = 'block';
-        document.getElementById('finalScoreNumber').textContent = independentScore + '/10';
+        document.getElementById('finalScoreNumber').textContent = independentScore + '/20';
         document.getElementById('phase4Next').disabled = false;
-        document.getElementById('finalIndScore').textContent = independentScore + '/10';
-        document.getElementById('overallScore').textContent = (4 + independentScore) + '/14';
+        document.getElementById('finalIndScore').textContent = independentScore + '/20';
+        document.getElementById('overallScore').textContent = (4 + independentScore) + '/24';
     }
 }
 
@@ -250,7 +260,7 @@ function printResults() {
     const resultsContainer = document.getElementById('printIndependentResults');
     let resultsHTML = '';
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 20; i++) {
         const problem = independentProblems[i - 1];
         const answer = studentAnswers[i];
         const isCorrect = answer ? answer.isCorrect : false;
@@ -268,8 +278,8 @@ function printResults() {
     resultsContainer.innerHTML = resultsHTML;
 
     const totalCorrect = 4 + independentScore;
-    const percentage = Math.round((totalCorrect / 14) * 100);
-    document.getElementById('printFinalScore').textContent = totalCorrect + '/14';
+    const percentage = Math.round((totalCorrect / 24) * 100);
+    document.getElementById('printFinalScore').textContent = totalCorrect + '/24';
     document.getElementById('printPercentage').textContent = percentage + '%';
 
     document.body.classList.remove('printing-worksheet');
@@ -349,7 +359,7 @@ function restartLesson() {
     });
 
     // Reset independent practice
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 20; i++) {
         const input = document.getElementById(`ind${i}-input`);
         const resultEl = document.getElementById(`ind${i}-result`);
         const submitBtn = input.parentElement.querySelector('.submit-btn');
@@ -378,7 +388,7 @@ function restartLesson() {
 // Allow Enter key to submit in exercises
 function setupEnterKeyListeners() {
     // Independent practice
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 20; i++) {
         const input = document.getElementById(`ind${i}-input`);
         if (input) {
             input.addEventListener('keypress', function(e) {
